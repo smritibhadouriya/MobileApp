@@ -1,0 +1,12 @@
+{
+  "name": "StudyGroup — Virtual Study Room",
+  "short_name": "StudyGroup",
+  "description": "Study together: shared Pomodoro timer, group chat, whiteboard, flashcards and progress tracking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1c1714",
+  "theme_color": "#1c1714",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f8f6f0" />
+    <meta name="description" content="Virtual study room: shared Pomodoro timer, group chat, whiteboard, flashcards and progress tracking." />
+    <title>StudyGroup</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong colours
+      try {
+        var p = JSON.parse(localStorage.getItem("fs:profile") || "{}");
+        if (p.designVersion !== 2) p = {};
+        var r = document.documentElement;
+        r.dataset.theme = p.theme || "light";
+        r.dataset.accent = p.accent || "violet";
+        r.dataset.bg = p.background || "pastel";
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

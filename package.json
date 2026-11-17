@@ -1,0 +1,17 @@
+{
+  "name": "studygroup",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,magenta \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "setup": "npm install && npm --prefix server install && npm --prefix client install",
+    "build": "npm --prefix client install --include=dev && npm --prefix client run build && npm --prefix server install --omit=dev",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  },
+  "engines": {
+    "node": ">=22.9"
+  }
+}

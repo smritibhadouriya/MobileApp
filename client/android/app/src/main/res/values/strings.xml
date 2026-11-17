@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">StudyGroup</string>
+    <string name="title_activity_main">StudyGroup</string>
+    <string name="package_name">com.studygroup.app</string>
+    <string name="custom_url_scheme">com.studygroup.app</string>
+</resources>

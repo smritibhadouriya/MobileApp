@@ -1,0 +1,303 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/inter";
+@import "@fontsource/caveat/500.css";
+@import "@fontsource/caveat/700.css";
+@import "katex/dist/katex.min.css";
+
+/* ================= TYPE =================
+   Bricolage Grotesque (chunky, playful) for headings and the clock, Inter for UI text,
+   Caveat (handwriting) for sticky notes. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", cursive;
+}
+
+/* ================= STUDY ROOM PALETTE =================
+   Components are written with slate-* (surfaces/text) and indigo-* (accent) utilities.
+   Both scales are remapped here so the whole app takes on the study-room look. */
+
+/* Night Library (dark, default): warm ink-brown surfaces, paper-white text */
+:root:root {
+  --color-slate-50: oklch(97% 0.012 85);
+  --color-slate-100: oklch(93% 0.016 82);
+  --color-slate-200: oklch(87% 0.02 78);
+  --color-slate-300: oklch(79% 0.024 75);
+  --color-slate-400: oklch(68% 0.027 72);
+  --color-slate-500: oklch(57% 0.027 68);
+  --color-slate-600: oklch(46% 0.025 62);
+  --color-slate-700: oklch(36% 0.023 58);
+  --color-slate-800: oklch(28% 0.02 55);
+  --color-slate-900: oklch(21.5% 0.017 52);
+  --color-slate-950: oklch(16.5% 0.014 50);
+
+  --color-indigo-200: var(--accent-200);
+  --color-indigo-300: var(--accent-300);
+  --color-indigo-400: var(--accent-400);
+  --color-indigo-500: var(--accent-500);
+  --color-indigo-600: var(--accent-600);
+  --color-indigo-950: var(--accent-950);
+
+  --rule: oklch(97% 0.012 85 / 0.07);
+  --margin-line: oklch(65% 0.17 25 / 0.35);
+  --lamp-glow: oklch(75% 0.14 65 / 0.16);
+  color-scheme: dark;
+}
+
+/* Paper (light, default): clean cream paper, near-black ink, sticker-style cards */
+:root:root[data-theme="light"] {
+  --color-slate-50: oklch(17% 0.03 285);
+  --color-slate-100: oklch(22% 0.03 285);
+  --color-slate-200: oklch(30% 0.03 285);
+  --color-slate-300: oklch(38% 0.028 285);
+  --color-slate-400: oklch(46% 0.025 285);
+  --color-slate-500: oklch(56% 0.02 285);
+  --color-slate-600: oklch(71% 0.015 285);
+  --color-slate-700: oklch(85% 0.012 285);
+  --color-slate-800: oklch(93% 0.012 285);
+  --color-slate-900: oklch(98.8% 0.004 285);
+  --color-slate-950: oklch(97.2% 0.014 92);
+  --ink: oklch(17% 0.03 285);
+
+  --color-indigo-300: var(--accent-600);
+  --color-indigo-400: var(--accent-600);
+  --color-indigo-950: color-mix(in oklab, var(--accent-500) 14%, white);
+  --color-emerald-950: oklch(95% 0.05 163);
+  --color-sky-950: oklch(95% 0.03 237);
+  /* Pale status colours are too faint on paper; use deeper shades */
+  --color-amber-200: oklch(55.5% 0.163 48.998);
+  --color-amber-300: oklch(55.5% 0.163 48.998);
+  --color-emerald-300: oklch(50.8% 0.118 165.612);
+  --color-emerald-400: oklch(59.6% 0.145 163.225);
+  --color-rose-300: oklch(51.4% 0.222 16.935);
+  --color-rose-400: oklch(58.6% 0.253 17.585);
+  --color-sky-400: oklch(58.8% 0.158 241.966);
+  --color-orange-400: oklch(64.6% 0.222 41.116);
+
+  --rule: oklch(55% 0.09 245 / 0.16);
+  --margin-line: oklch(62% 0.2 15 / 0.45);
+  --lamp-glow: oklch(88% 0.08 300 / 0.5);
+  color-scheme: light;
+}
+
+/* ================= ACCENTS ================= */
+/* Lamp (default): warm desk-lamp amber */
+:root {
+  --accent-200: oklch(90% 0.07 78);
+  --accent-300: oklch(84% 0.11 72);
+  --accent-400: oklch(77% 0.15 64);
+  --accent-500: oklch(70% 0.165 56);
+  --accent-600: oklch(58% 0.16 46);
+  --accent-950: oklch(27% 0.07 50);
+}
+/* Ink: fountain-pen blue */
+:root[data-accent="indigo"] {
+  --accent-200: oklch(87% 0.065 274.039);
+  --accent-300: oklch(78.5% 0.115 274.713);
+  --accent-400: oklch(67.3% 0.182 276.935);
+  --accent-500: oklch(58.5% 0.233 277.117);
+  --accent-600: oklch(51.1% 0.262 276.966);
+  --accent-950: oklch(25.7% 0.09 281.288);
+}
+/* Sage: library green */
+:root[data-accent="emerald"] {
+  --accent-200: oklch(90% 0.06 160);
+  --accent-300: oklch(82% 0.09 160);
+  --accent-400: oklch(72% 0.11 160);
+  --accent-500: oklch(63% 0.12 160);
+  --accent-600: oklch(52% 0.11 162);
+  --accent-950: oklch(26% 0.04 165);
+}
+:root[data-accent="rose"] {
+  --accent-200: oklch(89.2% 0.058 10.001);
+  --accent-300: oklch(81% 0.117 11.638);
+  --accent-400: oklch(71.2% 0.194 13.428);
+  --accent-500: oklch(64.5% 0.246 16.439);
+  --accent-600: oklch(55% 0.22 17.585);
+  --accent-950: oklch(27.1% 0.105 12.094);
+}
+:root[data-accent="sky"] {
+  --accent-200: oklch(90.1% 0.058 230.902);
+  --accent-300: oklch(82.8% 0.111 230.318);
+  --accent-400: oklch(74.6% 0.16 232.661);
+  --accent-500: oklch(68.5% 0.169 237.323);
+  --accent-600: oklch(55% 0.15 241.966);
+  --accent-950: oklch(29.3% 0.066 243.157);
+}
+:root[data-accent="violet"] {
+  --accent-200: oklch(89.4% 0.057 293.283);
+  --accent-300: oklch(81.1% 0.111 293.571);
+  --accent-400: oklch(70.2% 0.183 293.541);
+  --accent-500: oklch(60.6% 0.25 292.717);
+  --accent-600: oklch(54.1% 0.281 293.009);
+  --accent-950: oklch(28.3% 0.141 291.089);
+}
+
+/* ================= BACKGROUNDS ================= */
+body {
+  @apply antialiased text-slate-100 font-sans;
+  background-color: var(--color-slate-950);
+  background-attachment: fixed;
+}
+
+/* Fine paper grain over everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pastel (default): dot-grid notebook paper with soft colour blobs */
+:root[data-bg="pastel"] body {
+  background-image:
+    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--color-slate-500) 30%, transparent) 1px, transparent 0),
+    radial-gradient(38rem 30rem at 0% 0%, oklch(86% 0.09 300 / 0.55), transparent 70%),
+    radial-gradient(34rem 28rem at 100% 10%, oklch(90% 0.09 165 / 0.5), transparent 70%),
+    radial-gradient(40rem 30rem at 60% 110%, oklch(90% 0.08 55 / 0.55), transparent 70%);
+  background-size: 22px 22px, auto, auto, auto;
+}
+:root:not([data-theme="light"])[data-bg="pastel"] body {
+  background-image:
+    radial-gradient(circle at 1px 1px, oklch(100% 0 0 / 0.06) 1px, transparent 0),
+    radial-gradient(38rem 30rem at 0% 0%, oklch(45% 0.15 300 / 0.25), transparent 70%),
+    radial-gradient(34rem 28rem at 100% 10%, oklch(45% 0.1 165 / 0.18), transparent 70%),
+    radial-gradient(40rem 30rem at 60% 110%, oklch(45% 0.1 55 / 0.2), transparent 70%);
+  background-size: 22px 22px, auto, auto, auto;
+}
+
+/* Desk lamp: warm pool of light from the top-left */
+:root[data-bg="aurora"] body,
+:root[data-bg="lamp"] body {
+  background-image:
+    radial-gradient(55rem 38rem at 12% -8%, var(--lamp-glow), transparent 70%),
+    radial-gradient(40rem 30rem at 100% 100%, color-mix(in oklab, var(--accent-500) 7%, transparent), transparent 70%);
+}
+/* Library: lamp light over faint bookshelf rows */
+:root[data-bg="library"] body {
+  background-image:
+    radial-gradient(50rem 34rem at 50% -10%, var(--lamp-glow), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 46px, oklch(50% 0.05 50 / 0.05) 46px 48px, transparent 48px 74px, oklch(50% 0.05 50 / 0.04) 74px 75px),
+    repeating-linear-gradient(180deg, transparent 0 168px, oklch(40% 0.04 50 / 0.12) 168px 176px);
+}
+/* Rainy window: cool blue light and soft streaks */
+:root[data-bg="ocean"] body,
+:root[data-bg="rain"] body {
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, oklch(70% 0.08 240 / 0.16), transparent 70%),
+    repeating-linear-gradient(105deg, transparent 0 22px, oklch(80% 0.04 240 / 0.035) 22px 23px);
+}
+/* Night sky: stars over the desk */
+:root[data-bg="sunset"] body,
+:root[data-bg="night"] body {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(95% 0.02 85 / 0.6), transparent),
+    radial-gradient(1px 1px at 70% 15%, oklch(95% 0.02 85 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 45% 60%, oklch(95% 0.02 85 / 0.4), transparent),
+    radial-gradient(1px 1px at 85% 70%, oklch(95% 0.02 85 / 0.5), transparent),
+    radial-gradient(1px 1px at 10% 85%, oklch(95% 0.02 85 / 0.4), transparent),
+    radial-gradient(60rem 40rem at 50% 120%, oklch(45% 0.1 270 / 0.25), transparent 70%);
+  background-size: 300px 300px, 260px 260px, 340px 340px, 280px 280px, 320px 320px, auto;
+}
+:root[data-bg="forest"] body {
+  background-image:
+    radial-gradient(55rem 38rem at 100% 0%, oklch(60% 0.09 150 / 0.16), transparent 70%),
+    radial-gradient(40rem 30rem at 0% 100%, var(--lamp-glow), transparent 70%);
+}
+
+/* ================= STUDY OBJECTS ================= */
+
+/* Ruled notebook page with a red margin line */
+.notebook {
+  background-color: color-mix(in oklab, var(--color-slate-900) 60%, transparent);
+  background-image:
+    linear-gradient(90deg, transparent 2.75rem, var(--margin-line) 2.75rem, var(--margin-line) calc(2.75rem + 1px), transparent calc(2.75rem + 1px)),
+    repeating-linear-gradient(180deg, transparent 0, transparent 27px, var(--rule) 27px, var(--rule) 28px);
+  background-attachment: local;
+  line-height: 28px;
+  padding: 2px 1rem 0 3.5rem;
+}
+
+/* Sticky note */
+:root[data-theme="light"] .sticky-note {
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.sticky-note {
+  --note: oklch(90% 0.11 95);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--note) 92%, black) 0 1.75rem, var(--note) 1.75rem);
+  color: oklch(28% 0.04 60);
+  box-shadow: 0 1px 0 oklch(0% 0 0 / 0.08), 0 10px 20px -10px oklch(0% 0 0 / 0.5);
+}
+:root:not([data-theme="light"]) .sticky-note {
+  --note: oklch(84% 0.1 92);
+}
+
+
+/* Card used for the main panels */
+.paper-card {
+  background-color: color-mix(in oklab, var(--color-slate-900) 72%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-slate-700) 55%, transparent);
+  box-shadow: 0 1px 0 oklch(100% 0 0 / 0.03) inset, 0 12px 30px -18px oklch(0% 0 0 / 0.6);
+}
+:root[data-theme="light"] .paper-card {
+  background-color: var(--color-slate-900);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* Chunky "sticker" button: hard shadow that presses in when tapped */
+.pop {
+  transition: transform 0.08s, box-shadow 0.08s;
+  box-shadow: 0 8px 22px -10px color-mix(in oklab, var(--accent-500) 70%, transparent);
+}
+:root[data-theme="light"] .pop {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.pop:active:not(:disabled) {
+  transform: translate(2px, 2px);
+}
+:root[data-theme="light"] .pop:active:not(:disabled) {
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* Small tilted label, like a sticker on a laptop */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: oklch(20% 0.03 285);
+  border: 2px solid oklch(20% 0.03 285);
+  box-shadow: 2px 2px 0 oklch(20% 0.03 285);
+}
+
+/* Thin scrollbars that follow the theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-700) transparent;
+}
+
+/* Native app: respect the phone's notch / gesture bar */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.katex {
+  font-size: 1.05em;
+}

@@ -1,0 +1,10 @@
+{
+  "version": "0.2",
+  "language": "en,en-GB",
+  "words": [
+    "katex", "pomodoro", "pomodoros", "livekit", "creds", "youtu", "studygroup", "focussphere",
+    "razorpay", "capacitorjs", "netbanking", "hinglish", "minimise", "colour", "colours",
+    "ntvs", "njsproj", "dynacast", "dotx", "behenchod", "chutiya"
+  ],
+  "ignorePaths": ["node_modules", "dist", "client/android", "server/data"]
+}

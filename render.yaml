@@ -1,0 +1,35 @@
+# Render Blueprint: one web service runs the API, realtime server and website together.
+# Render dashboard → New → Blueprint → pick this repo. Fill in the secret values it asks for.
+services:
+  - type: web
+    name: studygroup
+    runtime: node
+    plan: starter # needed for the persistent disk below (free instances lose data on restart)
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+    disk:
+      name: studygroup-data
+      mountPath: /var/data # rooms, accounts and Pro plans are saved here
+      sizeGB: 1

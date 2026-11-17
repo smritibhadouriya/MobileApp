@@ -1,0 +1,17 @@
+{
+  "appId": "com.studygroup.app",
+  "appName": "StudyGroup",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "iconColor": "#E8892B"
+    }
+  }
+}
