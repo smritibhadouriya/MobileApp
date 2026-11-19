@@ -10,8 +10,8 @@ export default defineConfig({
     host: true,
     // Forward realtime traffic to the Socket.io server during development
     proxy: {
-      '/socket.io': { target: 'http://localhost:3001', ws: true },
-      '/api': 'http://localhost:3001',
+      '/socket.io': { target: 'http://localhost:4001', ws: true },
+      '/api': 'http://localhost:4001',
     },
   },
   optimizeDeps: {
