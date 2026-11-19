@@ -8,7 +8,7 @@ Real-time study rooms for students: a shared Pomodoro timer, group chat, whitebo
 # first time only: install everything
 npm run setup
 
-# every time: starts the server (http://localhost:3001) and the website (http://localhost:5173) together
+# every time: starts the server (http://localhost:4001) and the website (http://localhost:5173) together
 npm run dev
 ```
 
@@ -20,7 +20,7 @@ If the app shows **“Can't reach StudyGroup”**, the server isn't running — 
 
 | Variable | Purpose |
 | --- | --- |
-| `PORT` | Server port (default `3001`) |
+| `PORT` | Server port (default `4001`) |
 | `ANTHROPIC_API_KEY` | Turns on the AI Tutor (`/ask <question>` in chat). Without it the tutor is disabled. |
 | `ADMIN_KEY` | Enables the admin overview at `GET /api/admin?key=<ADMIN_KEY>` and manual Pro grants (`POST /api/admin/grant-pro` with header `x-admin-key`, body `{"email", "days"}`). |
 | `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` | Turn on Pro payments (Razorpay Checkout: UPI, cards, netbanking). |
@@ -67,7 +67,7 @@ The Android app is the same React code wrapped with Capacitor (`client/android`)
 
 1. Install [Android Studio](https://developer.android.com/studio) and open it once so it downloads the Android SDK (it also brings the Java it needs).
 2. The app runs from files on the phone, so it needs your server address. Create `client/.env`:
-   - Testing on the same Wi-Fi: `VITE_SERVER_URL=http://<your-PC-IP>:3001` (find the IP with `ipconfig`, and allow Node through Windows Firewall).
+   - Testing on the same Wi-Fi: `VITE_SERVER_URL=http://<your-PC-IP>:4001` (find the IP with `ipconfig`, and allow Node through Windows Firewall).
    - Real use: deploy the server and use its https URL.
 
 **Build**
