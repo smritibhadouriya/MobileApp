@@ -12,7 +12,8 @@ import { accountFromToken, consume, createAccountRouter, isPro, refund } from ".
 import { accounts } from "./store.js";
 import { callUrl, callsEnabled, createCallToken, muteAllMics, setCanPublish } from "./call.js";
 
-const PORT = process.env.PORT || 3001;
+// 4001 by default: 3000/3001 are often taken by other dev servers (Next.js, React)
+const PORT = process.env.PORT || 4001;
 const ROOM_TTL_MS = 7 * 24 * 60 * 60 * 1000; // empty rooms are deleted after a week of inactivity
 const REACTIONS = ["👍", "❤️", "😂", "🔥"];
 const LIMITS = {
